@@ -51,7 +51,28 @@ export const checkboxList = [
   },
 ];
 
-export const topBarCategories = ['Піца', 'Закуски', 'Напої', 'Добавки', 'Десерти'];
+export const topBarCategories = [
+  {
+    id: 1,
+    name: 'Піца',
+  },
+  {
+    id: 2,
+    name: 'Закуски',
+  },
+  {
+    id: 3,
+    name: 'Напої',
+  },
+  {
+    id: 4,
+    name: 'Добавки',
+  },
+  {
+    id: 5,
+    name: 'Десерти',
+  },
+];
 export const pizzasList = [
   {
     id: 1,
@@ -181,5 +202,44 @@ export const snacksList = [
     price: 230,
     weight: 190,
     description: 'Пармезан, Кунжутний соус, Батат ',
+  },
+];
+
+export const drinksList = [
+  {
+    id: 1,
+    name: 'Red Bull',
+    imageUrl:
+      'https://d3mvlk4okvy3v4.cloudfront.net/sushi/catalog/0ff516c6-5702-4dca-bc21-5fbbb2bc31ee/330x220ua-682ddc025e2ab.webp',
+    price: 100,
+    weight: 250,
+    description: '',
+  },
+  {
+    id: 2,
+    name: 'Sandora Сік Апельсин 0.5',
+    imageUrl:
+      'https://d3mvlk4okvy3v4.cloudfront.net/sushi/catalog/26b8ebe1-17d2-40ea-8997-dcbb48393ff2/660x440ua-682ddbdb2ae16.webp',
+    price: 130,
+    weight: 500,
+    description: '',
+  },
+  {
+    id: 3,
+    name: 'Coca-Cola',
+    imageUrl:
+      'https://d3mvlk4okvy3v4.cloudfront.net/sushi/catalog/13444b75-af1c-49bd-a716-51bed26baed1/330x220ua-682dda019d405.webp',
+    price: 75,
+    weight: 500,
+    description: '',
+  },
+  {
+    id: 4,
+    name: 'Rose d`Anjou, Chatelain Desjacques',
+    imageUrl:
+      'https://d3mvlk4okvy3v4.cloudfront.net/sushi/catalog/b6d29180-deb3-4309-9bee-976719913bd0/330x220ua-682ddb61a1184.webp',
+    price: 550,
+    weight: 750,
+    description: '',
   },
 ];

@@ -1,7 +1,6 @@
+import React from 'react';
 import { Container, Title, TopBar, Filters, ProductsGroupList } from '@/components/shared';
-import { pizzasList, snacksList } from '@/lib/data';
-
-
+import { drinksList, pizzasList, snacksList } from '@/lib/data';
 
 export default function Home() {
   return (
@@ -21,13 +20,13 @@ export default function Home() {
           {/* Товары */}
           <div className='flex-1'>
             <div className='flex flex-wrap gap-16'>
-              <ProductsGroupList title={'Піца'} items={pizzasList} />
-              <ProductsGroupList title={'Закуски'} items={snacksList} />
+              <ProductsGroupList title={'Піца'} items={pizzasList} categoryId={1} />
+              <ProductsGroupList title={'Закуски'} items={snacksList} categoryId={2} />
+              <ProductsGroupList title={'Напої'} items={drinksList} categoryId={3} />
             </div>
           </div>
         </div>
       </Container>
-      <div className='min-h-2000'></div>
     </>
   );
 }

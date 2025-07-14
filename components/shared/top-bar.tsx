@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Categories, Container, SortPopup } from '.';
 import { cn } from '@/lib/utils';

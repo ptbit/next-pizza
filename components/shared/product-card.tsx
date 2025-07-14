@@ -24,17 +24,28 @@ export const ProductCard: React.FC<Props> = ({
   imageUrl,
   className,
 }) => {
+  const noDescription = description === '';
   return (
     <div className={cn('max-w-min flex flex-col', className)}>
       <Link href={'/'}>
-        <div className='flex flex-col p-6 bg-secondary rounded-lg h-[260px]'>
-          <img className='flex min-w-[215px] h-[215px]' src={imageUrl} alt={name} />
+        <div
+          className={cn(
+            'flex flex-col p-6 bg-secondary rounded-lg h-[260px]',
+            noDescription && 'h-[200px]'
+          )}
+        >
+          <img
+            className={cn('flex min-w-[215px] h-[215px]', noDescription && 'h-[165px]')}
+            src={imageUrl}
+            alt={name}
+          />
         </div>
       </Link>
 
       <Title className='font-bold mb-1 mt-3' text={name} />
       <p className='text-sm text-gray-400 mb-3'>
-        <span className='text-primary font-bold'>{weight} г </span>- {description}
+        <span className='text-primary font-bold'>{weight} г </span>
+        {!noDescription && `- ${description}`}
       </p>
       <div className='mt-auto flex items-center justify-between '>
         <div className='flex items-center'>
