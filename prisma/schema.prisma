@@ -35,8 +35,8 @@ model Product {
   category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
 
-  ingredient Ingredient[]
-  items      ProductItem[]
+  ingredients Ingredient[]
+  items       ProductItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
