@@ -3,17 +3,18 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { FilterCheckbox } from '.';
 import { FilterCheckboxProps } from './filter-checkbox';
-import { Input } from '../ui';
+import { Input, Skeleton } from '../ui';
 
 interface Props {
   title?: string;
   items: FilterCheckboxProps[];
   defaultItems: FilterCheckboxProps[];
   limit?: number;
+  loading?: boolean;
   searchInputPlaceholder?: string;
-  onChange?: (values: string[]) => void;
+  onClickCheckbox?: (id: string) => void;
   defaultValue?: string;
-
+  selectedIds: Set<string>;
   className?: string;
 }
 
@@ -24,7 +25,9 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   limit = 5,
   searchInputPlaceholder = 'Пошук...',
   className,
-  onChange,
+  loading,
+  selectedIds,
+  onClickCheckbox,
   defaultValue,
 }) => {
   const [showAll, setShowAll] = useState(false);
@@ -33,6 +36,21 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
+  if (loading) {
+    return (
+      <div className={cn('', className)}>
+        {title && <p className='font-bold mb-3'>{title}</p>}
+        <div className='flex flex-col gap-3'>
+          {Array(limit)
+            .fill(0)
+            .map((_, id) => (
+              <Skeleton key={id} className='h-[24px] w-full rounded-xl' />
+            ))}
+        </div>
+      </div>
+    );
+  }
 
   const list = showAll
     ? items.filter((item) => item.text.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
@@ -61,24 +79,23 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
                 key={index}
                 text={item.text}
                 value={item.value + title}
-                checked={false}
-                onCheckedChange={(ids) => console.log(ids)}
+                checked={selectedIds.has(item.value)}
+                onCheckedChange={() => onClickCheckbox?.(item.value)}
               />
             );
           })
         )}
-
-        {items.length > limit && (
-          <div className={showAll ? 'border-t border-t-neutral-200 mt-4' : ''}>
-            <button
-              className={cn('text-primary mt-3 cursor-pointer')}
-              onClick={() => setShowAll(!showAll)}
-            >
-              {showAll ? 'Приховати' : '+ Показати всі'}
-            </button>
-          </div>
-        )}
       </div>
+      {items.length > limit && (
+        <div className={showAll ? 'border-t border-t-neutral-200 mt-4' : ''}>
+          <button
+            className={cn('text-primary mt-3 cursor-pointer')}
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? 'Приховати' : '+ Показати всі'}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

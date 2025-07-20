@@ -1,17 +1,25 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { CheckboxFiltersGroup, FilterCheckbox, RangeSlider, Title } from '.';
 import { Input } from '../ui';
 import { DollarSign } from 'lucide-react';
-import { checkboxList } from '@/lib/data';
+import { useFilterIngredients } from '@/hooks/useFilterIngredients';
 
 interface Props {
   className?: string;
 }
 
-
-
 export const Filters: React.FC<Props> = ({ className }) => {
+  const { ingredients, loading, selectedIds, onAddId } = useFilterIngredients();
+
+  const filterItems = ingredients.map((el) => ({
+    text: el.name,
+    value: String(el.id),
+    checked: false,
+  }));
+
   return (
     <div className={cn('', className)}>
       <Title text='Фильтри' className='mb-5 font-bold' />
@@ -32,15 +40,18 @@ export const Filters: React.FC<Props> = ({ className }) => {
             <DollarSign className='absolute right-2 text-gray-300 h-[19px]' />
           </div>
         </div>
-        <RangeSlider min={0} max={1000} step={1}  className='mt-4' />
+        <RangeSlider min={0} max={1000} step={1} className='mt-4' />
       </div>
 
       <CheckboxFiltersGroup
-        items={checkboxList}
-        defaultItems={checkboxList}
+        items={filterItems}
+        defaultItems={filterItems.slice(0, 6)}
         title={'Інгредієнти:'}
         limit={6}
         className='mt-5'
+        loading={loading}
+        selectedIds={selectedIds}
+        onClickCheckbox={onAddId}
       />
     </div>
   );
