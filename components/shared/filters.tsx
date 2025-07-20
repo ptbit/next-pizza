@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { CheckboxFiltersGroup, FilterCheckbox, RangeSlider, Title } from '.';
 import { Input } from '../ui';
@@ -10,15 +10,31 @@ import { useFilterIngredients } from '@/hooks/useFilterIngredients';
 interface Props {
   className?: string;
 }
+interface PriceProps {
+  priceFrom: number;
+  priceTo: number;
+}
 
 export const Filters: React.FC<Props> = ({ className }) => {
   const { ingredients, loading, selectedIds, onAddId } = useFilterIngredients();
+  const [prices, setPrices] = React.useState<PriceProps>({
+    priceFrom: 100,
+    priceTo: 1000,
+  });
+
+  const changePrice = (name: keyof PriceProps, value: number) => {
+    setPrices((prev) => ({ ...prev, [name]: value }));
+  };
 
   const filterItems = ingredients.map((el) => ({
     text: el.name,
     value: String(el.id),
     checked: false,
   }));
+
+  useEffect(() => {
+    console.log('prices', prices);
+  }, [prices]);
 
   return (
     <div className={cn('', className)}>
@@ -32,15 +48,34 @@ export const Filters: React.FC<Props> = ({ className }) => {
         <p className='font-bold mb-3'>Ціна від і до:</p>
         <div className='flex gap-4'>
           <div className='relative flex items-center'>
-            <Input placeholder='0' min={0} max={1000} defaultValue={100} />
+            <Input
+              placeholder='0'
+              min={0}
+              max={1000}
+              value={String(prices.priceFrom)}
+              onChange={(e) => changePrice('priceFrom', +e.target.value)}
+            />
             <DollarSign className='absolute right-2 text-gray-300 h-[19px]' />
           </div>
           <div className='relative flex items-center'>
-            <Input placeholder='1000' min={100} max={1000} defaultValue={500} />
+            <Input
+              placeholder='1000'
+              min={100}
+              max={1000}
+              value={String(prices.priceTo)}
+              onChange={(e) => changePrice('priceTo', +e.target.value)}
+            />
             <DollarSign className='absolute right-2 text-gray-300 h-[19px]' />
           </div>
         </div>
-        <RangeSlider min={0} max={1000} step={1} className='mt-4' />
+        <RangeSlider
+          min={100}
+          max={1000}
+          step={10}
+          className='mt-4'
+          value={[prices.priceFrom, prices.priceTo]}
+          onValueChange={([priceFrom, priceTo]) => setPrices({ priceFrom, priceTo })}
+        />
       </div>
 
       <CheckboxFiltersGroup
