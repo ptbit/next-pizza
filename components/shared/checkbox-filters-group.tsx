@@ -8,14 +8,15 @@ import { Input, Skeleton } from '../ui';
 interface Props {
   title?: string;
   items: FilterCheckboxProps[];
-  defaultItems: FilterCheckboxProps[];
+  defaultItems?: FilterCheckboxProps[];
   limit?: number;
   loading?: boolean;
   searchInputPlaceholder?: string;
   onClickCheckbox?: (id: string) => void;
-  defaultValue?: string;
+  // defaultValue?: string;
   selectedIds: Set<string>;
   className?: string;
+  name?: string;
 }
 
 export const CheckboxFiltersGroup: React.FC<Props> = ({
@@ -28,7 +29,8 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   loading,
   selectedIds,
   onClickCheckbox,
-  defaultValue,
+  // defaultValue,
+  name,
 }) => {
   const [showAll, setShowAll] = useState(false);
   const [search, setSearch] = useState('');
@@ -54,7 +56,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 
   const list = showAll
     ? items.filter((item) => item.text.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
-    : defaultItems.slice(0, limit);
+    : (defaultItems || items).slice(0, limit);
 
   return (
     <div className={cn('', className)}>
@@ -81,6 +83,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
                 value={item.value + title}
                 checked={selectedIds.has(item.value)}
                 onCheckedChange={() => onClickCheckbox?.(item.value)}
+                name={name}
               />
             );
           })

@@ -243,3 +243,29 @@ export const drinksList = [
     description: '',
   },
 ];
+
+
+export const pizzaSizesList = [
+  {
+    text: '20 см',
+    value: '20',
+  },
+  {
+    text: '30 см',
+    value: '30',
+  },
+  {
+    text: '40 см',
+    value: '40',
+  },
+];
+export const pizzaTypesList = [
+  {
+    text: 'Тонке',
+    value: '1',
+  },
+  {
+    text: 'Традиційне',
+    value: '2',
+  },
+];
