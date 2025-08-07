@@ -1,18 +1,19 @@
 'use client';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { topBarCategories } from '@/lib/data';
 import { useCategoryStore } from '@/store/category';
+import { Category } from '@prisma/client';
 
 interface Props {
+  items: Category[];
   className?: string;
 }
-export const Categories: React.FC<Props> = ({ className }) => {
+export const Categories: React.FC<Props> = ({ items, className }) => {
   const categoryActiveId = useCategoryStore((store) => store.activeId);
 
   return (
     <div className={cn('inline-flex items-center gap-1 bg-gray-100 rounded-2xl p-1', className)}>
-      {topBarCategories.map((cat) => {
+      {items.map((cat) => {
         return (
           <a
             key={cat.id}
@@ -22,7 +23,6 @@ export const Categories: React.FC<Props> = ({ className }) => {
             )}
             href={`#${cat.name}`}
           >
-            {/* <button className='cursor-pointer'>{cat}</button> */}
             {cat.name}
           </a>
         );

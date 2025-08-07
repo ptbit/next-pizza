@@ -39,6 +39,9 @@ async function up() {
       name: 'Пепперони фреш',
       imgUrl: 'https://media.dodostatic.net/image/r:233x233/11EE7D61304FAF5A98A6958F2BB2D260.webp',
       categoryId: 1,
+      // price: 300,
+      // description: 'ssss',
+      // weight: 100, 
       ingredients: {
         connect: seedData.ingredients.slice(0, 5),
       },

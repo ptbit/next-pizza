@@ -9,7 +9,7 @@ import { useCategoryStore } from '@/store/category';
 type Product = {
   id: number;
   name: string;
-  imageUrl: string;
+  imgUrl: string;
   price: number;
   weight: number;
   description: string;
@@ -17,7 +17,8 @@ type Product = {
 
 interface Props {
   title: string;
-  items: Product[];
+  // items: Product[];
+  products: any;
   categoryId: number;
   className?: string;
   listClassName?: string;
@@ -25,7 +26,7 @@ interface Props {
 
 export const ProductsGroupList: React.FC<Props> = ({
   title,
-  items,
+  products,
   className,
   listClassName,
   categoryId,
@@ -47,16 +48,17 @@ export const ProductsGroupList: React.FC<Props> = ({
     <section className={cn('', className)} id={title} ref={intersectionRef}>
       <Title size={'md'} text={title} className='font-bold mb-1 mt-3' />
       <div className={cn('grid grid-cols-3 gap-[30px]', listClassName)}>
-        {items.map((product) => {
+        {products.map((product: any) => {
           return (
             <ProductCard
               key={product.id}
               id={product.id}
               name={product.name}
-              imageUrl={product.imageUrl}
-              price={product.price}
-              weight={product.weight}
-              description={product.description}
+              imageUrl={product.imgUrl}
+              price={product.price || 100}
+              weight={product.weight || 0}
+              description={product.description || ''}
+              ingredients={product.ingredients.map((el: any) => el.name)}
             />
           );
         })}

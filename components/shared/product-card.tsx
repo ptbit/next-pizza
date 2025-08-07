@@ -13,6 +13,7 @@ interface Props {
   description: string;
   imageUrl: string;
   className?: string;
+  ingredients?: string[];
 }
 
 export const ProductCard: React.FC<Props> = ({
@@ -23,19 +24,20 @@ export const ProductCard: React.FC<Props> = ({
   description,
   imageUrl,
   className,
+  ingredients,
 }) => {
   const noDescription = description === '';
   return (
     <div className={cn('max-w-min flex flex-col', className)}>
-      <Link href={'/'}>
+      <Link href={`/product/${id}`}>
         <div
           className={cn(
             'flex flex-col p-6 bg-secondary rounded-lg h-[260px]',
-            noDescription && 'h-[200px]'
+            // noDescription && 'h-[200px]'
           )}
         >
           <img
-            className={cn('flex min-w-[215px] h-[215px]', noDescription && 'h-[165px]')}
+            className={cn('flex min-w-[215px] min-h-[215px]', noDescription && 'h-[165px]')}
             src={imageUrl}
             alt={name}
           />
@@ -44,8 +46,10 @@ export const ProductCard: React.FC<Props> = ({
 
       <Title className='font-bold mb-1 mt-3' text={name} />
       <p className='text-sm text-gray-400 mb-3'>
-        <span className='text-primary font-bold'>{weight} г </span>
+        {/* <span className='text-primary font-bold'>{weight} г </span> */}
         {!noDescription && `- ${description}`}
+        {ingredients?.join(', ')}
+
       </p>
       <div className='mt-auto flex items-center justify-between '>
         <div className='flex items-center'>
