@@ -2,103 +2,87 @@ const ingredients = [
   {
     name: 'Сирний бортик',
     price: 179,
-    imgUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png',
+    imgUrl: '/ingredients/cheese-border.png',
   },
   {
     name: 'Моцарелла',
     price: 79,
-    imgUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/cdea869ef287426386ed634e6099a5ba.png',
+    imgUrl: '/ingredients/mozzarella.png',
   },
   {
-    name: 'Сир чеддер',
+    name: 'Сир чеддер та пармезан',
     price: 79,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fsyr-chedder.webp&w=128&q=75',
+    imgUrl: '/ingredients/cheddar.png',
   },
   {
-    name: 'Халапеньо',
+    name: 'Гострий перець халапеньо',
     price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fkhalapeno.webp&w=128&q=75',
+    imgUrl: '/ingredients/jalapeno.png',
   },
   {
-    name: 'Індичка',
+    name: 'Бекон',
     price: 79,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2FPitsa%2FTopinhy%2Ftyrkey.webp&w=128&q=75',
+    imgUrl: '/ingredients/bacon.png',
   },
   {
-    name: 'Гриби',
+    name: 'Печериці',
     price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fshampinony.webp&w=128&q=75',
+    imgUrl: '/ingredients/champignons.png',
   },
   {
     name: 'Шинка',
     price: 79,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Flarge-vetchina-narez.webp&w=128&q=75',
+    imgUrl: '/ingredients/ham.png',
   },
   {
-    name: 'Чорізо',
+    name: 'Гостра чорізо',
     price: 79,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2FPitsa%2FTopinhy%2Fchorizo.webp&w=128&q=75',
+    imgUrl: '/ingredients/chorizo.png',
   },
   {
-    name: 'Парероні',
-    price: 79,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fpepp-302x302.webp&w=128&q=75',
-  },
-  {
-    name: 'Мариновані огірки',
+    name: 'Мариновані огірочки',
     price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fmarinovannye-ogurcy.webp&w=128&q=75',
+    imgUrl: '/ingredients/cucumbers.png',
   },
   {
-    name: 'Помідори',
+    name: 'Свіжі томати',
     price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Ftomato-png125491-1.webp&w=128&q=75',
+    imgUrl: '/ingredients/tomatoes.png',
   },
   {
-    name: 'Цибуля',
+    name: 'Червона цибуля',
     price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fluk.webp&w=128&q=75',
+    imgUrl: '/ingredients/onion.png',
   },
   {
-    name: 'Ананас',
-    price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fpolza-i-vred-ananasa-7.webp&w=128&q=75',
+    name: 'Баварські ковбаски',
+    price: 99,
+    imgUrl: '/ingredients/sausages.png',
   },
   {
-    name: 'Итальянские травы',
+    name: 'Соковиті ананаси',
+    price: 69,
+    imgUrl: '/ingredients/pineapples.png',
+  },
+  {
+    name: 'Італійські трави',
     price: 39,
-    imgUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/370dac9ed21e4bffaf9bc2618d258734.png',
+    imgUrl: '/ingredients/herbs.png',
   },
   {
-    name: 'Болгарський перець',
+    name: 'Солодкий перець',
     price: 59,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fperets.webp&w=128&q=75',
+    imgUrl: '/ingredients/pepper.png',
   },
   {
-    name: 'Кубики брынзы',
+    name: 'Кубики бринзи',
     price: 79,
-    imgUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA6B0FFC349',
+    imgUrl: '/ingredients/brynza.png',
   },
   {
-    name: 'Фрикадельки',
+    name: 'Митболи',
     price: 79,
-    imgUrl:
-      'https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fkolbasky.webp&w=128&q=75',
+    imgUrl: '/ingredients/meatballs.png',
   },
 ].map((obj, index) => ({ id: index + 1, ...obj }));
 

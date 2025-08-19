@@ -36,36 +36,33 @@ async function up() {
 
   const pizza1 = await prisma.product.create({
     data: {
-      name: 'Пепперони фреш',
-      imgUrl: 'https://media.dodostatic.net/image/r:233x233/11EE7D61304FAF5A98A6958F2BB2D260.webp',
+      name: 'Шинка і гриби',
+      imgUrl: '/pizza/ham-and-mushrooms.avif',
       categoryId: 1,
-      // price: 300,
-      // description: 'ssss',
-      // weight: 100, 
       ingredients: {
-        connect: seedData.ingredients.slice(0, 5),
+        connect: seedData.ingredients.slice(0, 12),
       },
     },
   });
 
   const pizza2 = await prisma.product.create({
     data: {
-      name: 'Сырная',
-      imgUrl: 'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp',
+      name: 'Карбонара',
+      imgUrl: '/pizza/carbonara.avif',
       categoryId: 1,
       ingredients: {
-        connect: seedData.ingredients.slice(5, 10),
+        connect: seedData.ingredients.slice(7, 16),
       },
     },
   });
 
   const pizza3 = await prisma.product.create({
     data: {
-      name: 'Чоризо фреш',
-      imgUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.webp',
+      name: 'Пепероні',
+      imgUrl: '/pizza/pepperoni.avif',
       categoryId: 1,
       ingredients: {
-        connect: seedData.ingredients.slice(10, 40),
+        connect: seedData.ingredients.slice(1, 11),
       },
     },
   });
@@ -78,6 +75,110 @@ async function up() {
         size: 20,
         price: 300,
       },
+      {
+        productId: pizza1.id,
+        pizzaType: 1,
+        size: 30,
+        price: 400,
+      },
+      {
+        productId: pizza1.id,
+        pizzaType: 1,
+        size: 40,
+        price: 500,
+      },
+      {
+        productId: pizza1.id,
+        pizzaType: 2,
+        size: 20,
+        price: 350,
+      },
+      {
+        productId: pizza1.id,
+        pizzaType: 2,
+        size: 30,
+        price: 450,
+      },
+      {
+        productId: pizza1.id,
+        pizzaType: 2,
+        size: 40,
+        price: 550,
+      },
+      //pizza2
+      {
+        productId: pizza2.id,
+        pizzaType: 1,
+        size: 20,
+        price: 309,
+      },
+      // {
+      //   productId: pizza2.id,
+      //   pizzaType: 1,
+      //   size: 30,
+      //   price: 409,
+      // },
+      // {
+      //   productId: pizza2.id,
+      //   pizzaType: 1,
+      //   size: 40,
+      //   price: 509,
+      // },
+      {
+        productId: pizza2.id,
+        pizzaType: 2,
+        size: 20,
+        price: 359,
+      },
+      // {
+      //   productId: pizza2.id,
+      //   pizzaType: 2,
+      //   size: 30,
+      //   price: 459,
+      // },
+      {
+        productId: pizza2.id,
+        pizzaType: 2,
+        size: 40,
+        price: 559,
+      },
+      //pizza3
+      {
+        productId: pizza3.id,
+        pizzaType: 1,
+        size: 20,
+        price: 199,
+      },
+      {
+        productId: pizza3.id,
+        pizzaType: 1,
+        size: 30,
+        price: 299,
+      },
+      {
+        productId: pizza3.id,
+        pizzaType: 1,
+        size: 40,
+        price: 399,
+      },
+      {
+        productId: pizza3.id,
+        pizzaType: 2,
+        size: 20,
+        price: 222,
+      },
+      {
+        productId: pizza3.id,
+        pizzaType: 2,
+        size: 30,
+        price: 333,
+      },
+      // {
+      //   productId: pizza3.id,
+      //   pizzaType: 2,
+      //   size: 40,
+      //   price: 444,
+      // },
     ],
   });
 
