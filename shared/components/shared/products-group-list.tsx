@@ -4,7 +4,7 @@ import React from 'react';
 import { useIntersection } from 'react-use';
 import { cn } from '@/shared/lib/utils';
 import { ProductCard, Title } from '.';
-import { useCategoryStore } from '@/shared/store/category';
+import { useCategoryStore } from '@/shared/store';
 
 type Product = {
   id: number;

@@ -87,7 +87,7 @@ model Cart {
   user   User? @relation(fields: [userId], references: [id])
   userId Int?  @unique
 
-  item      CartItem[]
+  items      CartItem[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }
