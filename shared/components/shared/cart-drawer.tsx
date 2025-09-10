@@ -14,8 +14,7 @@ import { Button } from '../ui';
 import { ArrowRight } from 'lucide-react';
 import { CartDrawerItem } from '.';
 import { useCartStore } from '@/shared/store';
-import { Api } from '@/shared/services/api-client';
-import { getCartDetails, getCartItemDetails } from '@/shared/lib';
+import { getCartItemDetails } from '@/shared/lib';
 import { BatterType, PizzaSize } from '@/shared/constants/pizza';
 
 interface Props {
@@ -28,6 +27,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
   const items = useCartStore((store) => store.items);
   const updateItemQuantity = useCartStore((store) => store.updateItemQuantity);
   const removeCartItem = useCartStore((store) => store.removeCartItem);
+  const loading = useCartStore((store) => store.loading);
 
   React.useEffect(() => {
     fetchCartItems();
@@ -40,9 +40,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
   };
 
   const onClickDeleteButton = (id: number) => {
-    removeCartItem(id)
+    removeCartItem(id);
   };
-
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -53,13 +52,10 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
           </SheetTitle>
         </SheetHeader>
 
-        {/* START ITEMS */}
-
         <div className='flex-1 overflow-auto'>
-          <div className='mb-2'>
-            {items.map((item) => (
+          {items.map((item) => (
+            <div className='mb-2' key={item.id}>
               <CartDrawerItem
-                key={item.id}
                 id={item.id}
                 imageUrl={item.imageUrl}
                 details={
@@ -79,8 +75,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
                 }}
                 onClickDeleteButton={() => onClickDeleteButton(item.id)}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* END ITEMS */}
@@ -94,7 +90,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
             <span className='font-bold text-lg'> {totalAmount} грн.</span>
           </div>
           <Link href='/cart'>
-            <Button type='submit' className='w-full h-12 text-base'>
+            <Button type='submit' className='w-full h-12 text-base' loading={loading}>
               Оформити замовлення
               <ArrowRight className='w-5 ml-2' />
             </Button>

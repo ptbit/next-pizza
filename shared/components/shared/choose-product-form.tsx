@@ -11,15 +11,21 @@ type IProduct = {
 interface Props {
   imageUrl: string;
   name: string;
+  price: number;
 
   onClickAdd?: VoidFunction;
   className?: string;
+  loading?: boolean;
 }
 
-export const ChooseProductForm: React.FC<Props> = ({ imageUrl, name, onClickAdd, className }) => {
-  const textDetails = 'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
-  const totalPrice = 333;
-
+export const ChooseProductForm: React.FC<Props> = ({
+  imageUrl,
+  name,
+  price,
+  onClickAdd,
+  className,
+  loading,
+}) => {
   return (
     <div className={cn('flex flex-1', className)}>
       <div className='flex flex-1 items-center justify-center relative w-full'>
@@ -30,13 +36,15 @@ export const ChooseProductForm: React.FC<Props> = ({ imageUrl, name, onClickAdd,
         />
       </div>
 
-      <div className='w-[490px] bg-[#f3f4f6] p-7'>
+      <div className='w-[490px] bg-[#f3f4f6] p-7 flex flex-col justify-between'>
         <DialogTitle className='font-extrabold mb-1 text-[22px]'>{name}</DialogTitle>
 
-        <p className='text-gray-400'>{textDetails}</p>
-
-        <Button className='mt-10 w-full h-[55px] px-10 text-base rounded-[18px] cursor-pointer'>
-          Додати в кошик за {totalPrice} грн.
+        <Button
+          className='mt-10 w-full h-[55px] px-10 text-base rounded-[18px] cursor-pointer'
+          onClick={onClickAdd}
+          loading={loading}
+        >
+          Додати в кошик за {price} грн.
         </Button>
       </div>
     </div>
