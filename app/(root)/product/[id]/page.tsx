@@ -1,47 +1,57 @@
-import { Container, GroupVariants, PizzaImage, Title } from '@/shared/components/shared';
-import { prisma } from '@/prisma/prisma-client';
-import { notFound } from 'next/navigation';
 import React from 'react';
+import { prisma } from '@/prisma/prisma-client';
+import { Dialog } from '@radix-ui/react-dialog';
+import { notFound } from 'next/navigation';
+import { Container, ProductForm } from '@/shared/components/shared';
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const productId = Number(id);
+
   const product = await prisma.product.findFirst({
     where: { id: productId },
+    include: {
+      ingredients: true,
+      category: {
+        include: {
+          product: {
+            include: {
+              items: true,
+            },
+          },
+        },
+      },
+      items: true,
+    },
   });
+
   if (!product) {
     return notFound();
   }
+
   const items = [
     {
-      name: 'Маленький',
+      id: 1,
+      name: '2string',
       value: '20',
     },
     {
-      name: 'Середній',
+      id: 2,
+      name: '3string',
       value: '30',
     },
     {
-      name: 'Великий',
+      id: 3,
+      name: '4string',
       value: '40',
-      disabled: true,
     },
   ];
+
   return (
-    <Container className='flex  my-10'>
-      <div className='flex flex-1'>
-        <PizzaImage
-          className='relative mt-10'
-          src={product.imgUrl}
-          alt={product.name}
-          size={'20'}
-        />
-      </div>
-      <div className='w-[490px] bg-[#f3f4f6] p-7'>
-        <Title text={product.name} size='md' className='font-extrabold mb-1' />
-        <p className='text-gray-400'>{product.name}</p>
-        <GroupVariants items={items} value='20' />
-      </div>
+    <Container className='flex my-10'>
+      <Dialog>
+        <ProductForm product={product} />
+      </Dialog>
     </Container>
   );
 }

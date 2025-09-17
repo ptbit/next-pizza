@@ -2,13 +2,14 @@
 
 import { cn } from '@/shared/lib/utils';
 import React from 'react';
-import { GroupVariants, IngredientItem, PizzaImage } from '.';
-import { DialogTitle } from '@radix-ui/react-dialog';
+import { GroupVariants, IngredientItem, PizzaImage, Title } from '.';
 import { Button } from '../ui';
 import { BatterType, PizzaSize, batterTypes } from '../../constants/pizza';
 import { Ingredient, ProductItem } from '@prisma/client';
 import { getPizzaDetails } from '@/shared/lib';
 import { usePizzaOptions } from '@/shared/hooks';
+// import { DialogTitle } from '../ui/dialog';
+import { DialogTitle } from '@radix-ui/react-dialog';
 
 interface Props {
   imageUrl: string;
@@ -59,6 +60,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
       <PizzaImage src={imageUrl} alt={name} size={String(selectedPizzaSize)} />
 
       <div className='w-[490px] bg-[#f3f4f6] p-7'>
+        {/* <Title className='font-extrabold mb-1 text-[22px]' text={name} /> */}
         <DialogTitle className='font-extrabold mb-1 text-[22px]'>{name}</DialogTitle>
 
         <p className='text-gray-400'>{textDetails}</p>
@@ -77,7 +79,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
           />
         </div>
 
-        <div className=' rounded-md h-[420px] p-5 overflow-auto scrollbar'>
+        <div className=' rounded-md h-[420px] px-5 pb-1 overflow-auto scrollbar'>
           <div className='grid grid-cols-3 gap-3 '>
             {ingredients.map((ing) => (
               <IngredientItem
