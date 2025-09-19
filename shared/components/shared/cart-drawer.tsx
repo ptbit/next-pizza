@@ -13,26 +13,13 @@ import Link from 'next/link';
 import { Button } from '../ui';
 import { ArrowRight } from 'lucide-react';
 import { CartDrawerItem } from '.';
-import { useCartStore } from '@/shared/store';
 import { getCartItemDetails } from '@/shared/lib';
 import { BatterType, PizzaSize } from '@/shared/constants/pizza';
 import Image from 'next/image';
+import { useCart } from '@/shared/hooks';
 
-interface Props {
-  className?: string;
-}
-
-export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
-  const fetchCartItems = useCartStore((store) => store.fetchCartItems);
-  const totalAmount = useCartStore((store) => store.totalAmount);
-  const items = useCartStore((store) => store.items);
-  const updateItemQuantity = useCartStore((store) => store.updateItemQuantity);
-  const removeCartItem = useCartStore((store) => store.removeCartItem);
-  const loading = useCartStore((store) => store.loading);
-
-  React.useEffect(() => {
-    fetchCartItems();
-  }, []);
+export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const { totalAmount, items, updateItemQuantity, removeCartItem, loading } = useCart();
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
@@ -43,6 +30,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
   const onClickDeleteButton = (id: number) => {
     removeCartItem(id);
   };
+
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -91,7 +79,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
                 </span>
                 <span className='font-bold text-lg'> {totalAmount} грн.</span>
               </div>
-              <Link href='/cart'>
+              <Link href='/checkout'>
                 <Button type='submit' className='w-full h-12 text-base' loading={loading}>
                   Оформити замовлення
                   <ArrowRight className='w-5 ml-2' />
@@ -105,12 +93,12 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
               <SheetTitle className='text-center text-2xl'>Кошик порожній</SheetTitle>
               <span className='text-sm text-gray-500'>Але це ніколи не пізно виправити {`:)`}</span>
             </SheetHeader>
-              <Image
-                src='/assets/images/empty-box.png'
-                alt='no items in cart'
-                width={120}
-                height={120}
-              />
+            <Image
+              src='/assets/images/empty-box.png'
+              alt='no items in cart'
+              width={120}
+              height={120}
+            />
           </div>
         )}
       </SheetContent>

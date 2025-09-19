@@ -5,3 +5,4 @@ export { Drawer } from './drawer';
 export { Input } from './input';
 export { Skeleton } from './skeleton';
 export { Slider } from './slider';
+export { Textarea } from './textarea';
